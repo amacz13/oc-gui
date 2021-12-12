@@ -1,0 +1,12 @@
+{
+  "name": "angular-electron",
+  "version": "0.0.1",
+  "description": "GUI for Openshift Client",
+  "author": {
+    "name": "Axel Maczkowiak",
+    "email": "hi@amacz13.fr"
+  },
+  "main": "main.js",
+  "private": true,
+  "dependencies": {}
+}
