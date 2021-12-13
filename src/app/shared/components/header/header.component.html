@@ -1,0 +1,16 @@
+<mat-toolbar (mouseenter)="mouseEnter()" (mouseleave)="mouseLeave()">
+    <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
+        <mat-icon>menu</mat-icon>
+    </button>
+    <span>OC GUI</span>
+    <span class="example-spacer"></span>
+    <button mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
+        <mat-icon>minimize</mat-icon>
+    </button>
+    <button mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
+        <mat-icon>open_in_full</mat-icon>
+    </button>
+    <button (click)="close()" mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
+        <mat-icon>close</mat-icon>
+    </button>
+</mat-toolbar>

@@ -1,4 +1,4 @@
-import { app, BrowserWindow, screen } from 'electron';
+import { app, BrowserWindow, screen, ipcMain } from 'electron';
 import * as path from 'path';
 import * as fs from 'fs';
 import * as url from 'url';
@@ -18,6 +18,8 @@ function createWindow(): BrowserWindow {
     y: 0,
     width: size.width,
     height: size.height,
+    frame: false,
+    titleBarOverlay: true,
     webPreferences: {
       nodeIntegration: true,
       allowRunningInsecureContent: (serve) ? true : false,
@@ -25,6 +27,15 @@ function createWindow(): BrowserWindow {
     },
   });
 
+  ipcMain.on('set-ignore-mouse-events', (event, ...args) => {
+    const win = BrowserWindow.fromWebContents(event.sender)
+    // @ts-ignore
+    win.setIgnoreMouseEvents(...args)
+  })
+
+  ipcMain.on('close-app', (event, ...args) => {
+    app.quit();
+  })
 
   if (serve) {
     win.webContents.openDevTools();

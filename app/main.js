@@ -15,11 +15,29 @@ function createWindow() {
         y: 0,
         width: size.width,
         height: size.height,
+        frame: false,
+        titleBarOverlay: true,
         webPreferences: {
             nodeIntegration: true,
             allowRunningInsecureContent: (serve) ? true : false,
             contextIsolation: false, // false if you want to run e2e test with Spectron
         },
+    });
+    electron_1.ipcMain.on('set-ignore-mouse-events', function (event) {
+        var args = [];
+        for (var _i = 1; _i < arguments.length; _i++) {
+            args[_i - 1] = arguments[_i];
+        }
+        var win = electron_1.BrowserWindow.fromWebContents(event.sender);
+        // @ts-ignore
+        win.setIgnoreMouseEvents.apply(win, args);
+    });
+    electron_1.ipcMain.on('close-app', function (event) {
+        var args = [];
+        for (var _i = 1; _i < arguments.length; _i++) {
+            args[_i - 1] = arguments[_i];
+        }
+        electron_1.app.quit();
     });
     if (serve) {
         win.webContents.openDevTools();
